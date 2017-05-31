@@ -20,31 +20,49 @@ var lcboApp = {};
 
 lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF"
 
-lcboApp.getWine = function() {
+lcboApp.getAlc = function(userChoiceBooze) {
      $.ajax({
         url: "http://lcboapi.com/products",
         method: "GET",
         dataType: "json",
         data: {
             access_key: lcboApp.key,
-            q: "spirits+organic",
+            q: `${userChoiceBooze}+organic`,
             per_page: 100, 
             page: 1
         }
     }).then(function(res){
         let testResults = res.result;
         console.log(testResults)
+        lcboApp.displayAlc(testResults);
     })
     };
-lcboApp.getStores = function(){
-    $.ajax({
-       url: "http://lcboapi.com/stores",
 
 
+ lcboApp.getUserInput = function(){  
+    $('.boozeChoiceButton').on('click', function(){
+        var userChoiceBooze = $('input[name=alcohol]:checked').val();
+        console.log(userChoiceBooze);
+        lcboApp.getAlc(userChoiceBooze);
+    })}
 
-
+// lcboApp.getStores = function(){
+//     $.ajax({
+//        url: "http://lcboapi.com/stores",
+lcboApp.displayAlc = function(item){
+    $('.masterContainer').empty();
+    item.forEach(function(someObj){
+        var alcName = $('<h1>').text(someObj.name);
+        var alcImg = $('<img>').attr('src', someObj.image_thumb_url);
+        var alcContainer = $('<div>').addClass('alcContainer').append(alcName, alcImg)
+        $('.masterContainer').append(alcContainer);
     })
 }
+
+
+
+//     })
+// }
 
 
 
@@ -56,7 +74,8 @@ lcboApp.getStores = function(){
 
 
     lcboApp.init = function(){
-        lcboApp.getWine();
+        lcboApp.getAlc();
+        lcboApp.getUserInput();
     }
 
 
@@ -68,4 +87,4 @@ lcboApp.getStores = function(){
     $(function(){
         lcboApp.init();
     })
->>>>>>> a4e44a244c4222ced83481e0d850f2bbfc60c323
+
