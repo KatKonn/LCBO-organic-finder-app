@@ -33,7 +33,7 @@ lcboApp.getAlc = function(userChoiceBooze) {
         }
     }).then(function(res){
         let testResults = res.result;
-        console.log(testResults)
+        // console.log(testResults)
         lcboApp.displayAlc(testResults);
     })
     };
@@ -42,7 +42,7 @@ lcboApp.getAlc = function(userChoiceBooze) {
  lcboApp.getUserInput = function(){  
     $('.boozeChoiceButton').on('click', function(){
         var userChoiceBooze = $('input[name=alcohol]:checked').val();
-        console.log(userChoiceBooze);
+        // console.log(userChoiceBooze);
         lcboApp.getAlc(userChoiceBooze);
     })}
 
@@ -51,11 +51,43 @@ lcboApp.getAlc = function(userChoiceBooze) {
 //        url: "http://lcboapi.com/stores",
 lcboApp.displayAlc = function(item){
     $('.masterContainer').empty();
-    item.forEach(function(someObj){
+    var filteredAlc = item.filter(function(alc){
+        return alc.image_thumb_url !== null && alc.tags !== "sake" && alc.id !== 84210
+    });
+
+
+    filteredAlc.forEach(function(someObj){
         var alcName = $('<h1>').text(someObj.name);
         var alcImg = $('<img>').attr('src', someObj.image_thumb_url);
         var alcContainer = $('<div>').addClass('alcContainer').append(alcName, alcImg)
+        .data('alcid', someObj.id);
         $('.masterContainer').append(alcContainer);
+    })
+}
+lcboApp.getStoresById = function(clickedItem){
+        console.log(clickedItem)
+         $.ajax({
+            url: "http://lcboapi.com/stores",
+            method: "GET",
+            dataType: "json",
+            data: {
+                access_key: lcboApp.key,
+                product_id: clickedItem,
+                per_page: 100, 
+                page: 1
+            }
+         }).then(function(res2){
+            let storeResults = res2.result;
+            console.log(storeResults)
+
+         })
+
+}
+lcboApp.events = function() {
+    $('.masterContainer').on('click', '.alcContainer', function(){
+        var clickedItem = $(this).data();
+        console.log(clickedItem)
+        lcboApp.getStoresById(clickedItem.alcid)
     })
 }
 
@@ -76,6 +108,8 @@ lcboApp.displayAlc = function(item){
     lcboApp.init = function(){
         lcboApp.getAlc();
         lcboApp.getUserInput();
+        lcboApp.getStoresById();
+        lcboApp.events();
     }
 
 
