@@ -1,3 +1,4 @@
+
 // 1. User selects beer or wine
 // 2. On click, arrow button shows for smooth scroll
 // 3. Make ajax call to the LCBO API with query of organic and user's choice
@@ -15,4 +16,56 @@
 // 15. Print directions for user selection
 // Google API key: AIzaSyDgkEVqAbyPj6dmtqjP_Djhp-wOLdGA6nw
 
-content_copy
+var lcboApp = {};
+
+lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF"
+
+lcboApp.getWine = function() {
+     $.ajax({
+        url: "http://lcboapi.com/products",
+        method: "GET",
+        dataType: "json",
+        data: {
+            access_key: lcboApp.key,
+            q: "spirits+organic",
+            per_page: 100, 
+            page: 1
+        }
+    }).then(function(res){
+        let testResults = res.result;
+        console.log(testResults)
+    })
+    };
+lcboApp.getStores = function(){
+    $.ajax({
+       url: "http://lcboapi.com/stores",
+
+
+
+
+    })
+}
+
+
+
+
+
+
+
+
+
+
+    lcboApp.init = function(){
+        lcboApp.getWine();
+    }
+
+
+
+
+
+
+
+    $(function(){
+        lcboApp.init();
+    })
+>>>>>>> a4e44a244c4222ced83481e0d850f2bbfc60c323
