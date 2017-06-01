@@ -61,7 +61,7 @@ lcboApp.displayAlc = function(item){
         var alcImg = $('<img>').attr('src', someObj.image_thumb_url);
         var input = $('<input>').addClass('hide').attr({
             type: 'radio',
-            id: someObj.id,
+            id: 'hello',
             name: 'options'
         })
         var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
@@ -93,8 +93,8 @@ lcboApp.getStoresById = function(clickedItem){
 //grabbing data (product id) and sending it to the stores endpont AJAX call 
 lcboApp.events = function() {
     $('.masterContainer').on('click', '.alcContainer', function(){
-        var clickedItem = $(this).data();
-        
+        var clickedItem = $(this).data(); 
+
         lcboApp.getStoresById(clickedItem.alcid)
     })
 }
