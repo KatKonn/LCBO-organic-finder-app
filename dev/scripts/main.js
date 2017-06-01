@@ -10,10 +10,23 @@
 // 9. If user clicks display more button, display show rest of results. 
 // 10. From results, user will select a single  beer or wine
 // 11. Get the product id from user selection
+
+// Get user location from browser - store the lat long in to two variables
+// Initialize google map
+// Send the user's variables to the stores endpoint api
+
 // 12. Make ajax call to store endpoint to get a list of stores that carry product id from user selection
-// 13. Get lattitude/longtitude results returned from the ajax call 
+
+// 13. Get latitude/longitude  of each store results returned from the ajax call 
+
 // 14. Display pins on map of returned results
-// 15. Print directions for user selection
+        //for each store create a new pin on our google map 
+
+// when user clicks on pin, get the longitude and latitude of that specific LCBO location
+
+// Set origin location to user's geo location, set destination location to the clicked pin
+// ask Google to get directions for origin and destination
+// Print directions for user selection
 // Google API key: AIzaSyDgkEVqAbyPj6dmtqjP_Djhp-wOLdGA6nw
 
 
