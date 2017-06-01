@@ -16,6 +16,8 @@
 // 15. Print directions for user selection
 // Google API key: AIzaSyDgkEVqAbyPj6dmtqjP_Djhp-wOLdGA6nw
 
+
+// get products based on userChoice beer/wine/spirits
 var lcboApp = {};
 
 lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF"
@@ -38,7 +40,7 @@ lcboApp.getAlc = function(userChoiceBooze) {
     })
     };
 
-
+//getting user input and sending it to the ajax call above
  lcboApp.getUserInput = function(){  
     $('.boozeChoiceButton').on('click', function(){
         var userChoiceBooze = $('input[name=alcohol]:checked').val();
@@ -46,24 +48,24 @@ lcboApp.getAlc = function(userChoiceBooze) {
         lcboApp.getAlc(userChoiceBooze);
     })}
 
-// lcboApp.getStores = function(){
-//     $.ajax({
-//        url: "http://lcboapi.com/stores",
+//filtering undesirables out of the results
 lcboApp.displayAlc = function(item){
     $('.masterContainer').empty();
     var filteredAlc = item.filter(function(alc){
         return alc.image_thumb_url !== null && alc.tags !== "sake" && alc.id !== 84210
     });
 
-
+    //printing filtered results to the browser
     filteredAlc.forEach(function(someObj){
         var alcName = $('<h1>').text(someObj.name);
         var alcImg = $('<img>').attr('src', someObj.image_thumb_url);
         var alcContainer = $('<div>').addClass('alcContainer').append(alcName, alcImg)
+        //adding data identifier to the container so that the program identifies what we selected
         .data('alcid', someObj.id);
         $('.masterContainer').append(alcContainer);
     })
 }
+
 lcboApp.getStoresById = function(clickedItem){
         console.log(clickedItem)
          $.ajax({
@@ -77,12 +79,13 @@ lcboApp.getStoresById = function(clickedItem){
                 page: 1
             }
          }).then(function(res2){
-            let storeResults = res2.result;
+            let storeResults = res2;
             console.log(storeResults)
 
          })
 
 }
+//grabbing data (product id) and sending it to the stores endpont AJAX call 
 lcboApp.events = function() {
     $('.masterContainer').on('click', '.alcContainer', function(){
         var clickedItem = $(this).data();
