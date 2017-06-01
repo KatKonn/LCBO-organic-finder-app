@@ -117,4 +117,3 @@ lcboApp.init = function(){
 $(function(){
     lcboApp.init();
 })
-
