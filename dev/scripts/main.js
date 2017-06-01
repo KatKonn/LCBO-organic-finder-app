@@ -22,6 +22,9 @@ var lcboApp = {};
 
 lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF"
 
+
+
+
 lcboApp.getAlc = function(userChoiceBooze) {
      $.ajax({
         url: "http://lcboapi.com/products",
@@ -46,7 +49,11 @@ lcboApp.getAlc = function(userChoiceBooze) {
         var userChoiceBooze = $('input[name=alcohol]:checked').val();
         // console.log(userChoiceBooze);
         lcboApp.getAlc(userChoiceBooze);
-    })}
+    })
+}
+
+
+
 
 //filtering undesirables out of the results
 lcboApp.displayAlc = function(item){
@@ -61,18 +68,20 @@ lcboApp.displayAlc = function(item){
         var alcImg = $('<img>').attr('src', someObj.image_thumb_url);
         var input = $('<input>').addClass('hide').attr({
             type: 'radio',
-            id: 'hello',
-            name: 'options'
+            id: someObj.id,
+            name: 'options',
+            value: someObj.id
         })
         var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
         var alcContainer = $('<div>').addClass('alcContainer').append(input, label)
         //adding data identifier to the container so that the program identifies what we selected
-        .data('alcid', someObj.id);
+        //.data('alcid', someObj.id);
         $('.masterContainer').append(alcContainer);
     })
 }
 
 lcboApp.getStoresById = function(clickedItem){
+        console.log(clickedItem);
          $.ajax({
             url: "http://lcboapi.com/stores",
             method: "GET",
@@ -86,47 +95,25 @@ lcboApp.getStoresById = function(clickedItem){
          }).then(function(res2){
             let storeResults = res2.result;
             console.log(storeResults)
-
          })
-
 }
+
 //grabbing data (product id) and sending it to the stores endpont AJAX call 
 lcboApp.events = function() {
-    $('.masterContainer').on('click', '.alcContainer', function(){
-        var clickedItem = $(this).data(); 
-
-        lcboApp.getStoresById(clickedItem.alcid)
+    $('.masterContainer').on('click', 'input', function(){
+        var clickedItem = $(this).val();
+        lcboApp.getStoresById(clickedItem)
     })
 }
 
 
+lcboApp.init = function(){
+    lcboApp.getAlc();
+    lcboApp.getUserInput();
+    lcboApp.getStoresById();
+    lcboApp.events();
+}
 
-//     })
-// }
-
-
-
-
-
-
-
-
-
-
-    lcboApp.init = function(){
-        lcboApp.getAlc();
-        lcboApp.getUserInput();
-        lcboApp.getStoresById();
-        lcboApp.events();
-    }
-
-
-
-
-
-
-
-    $(function(){
-        lcboApp.init();
-    })
-
+$(function(){
+    lcboApp.init();
+})
