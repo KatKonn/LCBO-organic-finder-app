@@ -59,7 +59,13 @@ lcboApp.displayAlc = function(item){
     filteredAlc.forEach(function(someObj){
         var alcName = $('<h1>').text(someObj.name);
         var alcImg = $('<img>').attr('src', someObj.image_thumb_url);
-        var alcContainer = $('<div>').addClass('alcContainer').append(alcName, alcImg)
+        var input = $('<input>').addClass('hide').attr({
+            type: 'radio',
+            id: someObj.id,
+            name: 'options'
+        })
+        var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
+        var alcContainer = $('<div>').addClass('alcContainer').append(input, label)
         //adding data identifier to the container so that the program identifies what we selected
         .data('alcid', someObj.id);
         $('.masterContainer').append(alcContainer);
@@ -67,7 +73,6 @@ lcboApp.displayAlc = function(item){
 }
 
 lcboApp.getStoresById = function(clickedItem){
-        console.log(clickedItem)
          $.ajax({
             url: "http://lcboapi.com/stores",
             method: "GET",
@@ -79,7 +84,7 @@ lcboApp.getStoresById = function(clickedItem){
                 page: 1
             }
          }).then(function(res2){
-            let storeResults = res2;
+            let storeResults = res2.result;
             console.log(storeResults)
 
          })
@@ -89,7 +94,7 @@ lcboApp.getStoresById = function(clickedItem){
 lcboApp.events = function() {
     $('.masterContainer').on('click', '.alcContainer', function(){
         var clickedItem = $(this).data();
-        console.log(clickedItem)
+        
         lcboApp.getStoresById(clickedItem.alcid)
     })
 }
