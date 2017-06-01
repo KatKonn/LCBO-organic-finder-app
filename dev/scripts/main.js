@@ -33,9 +33,22 @@
 // get products based on userChoice beer/wine/spirits
 var lcboApp = {};
 
-lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF"
+lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF";
+var userLocation;
 
-
+lcboApp.getUserLocation = function() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+            console.log(pos);
+            lcboApp.usrLat = pos.lat;
+            lcboApp.usrLng = pos.lng;
+        });
+    }
+}
 
 
 lcboApp.getAlc = function(userChoiceBooze) {
@@ -93,7 +106,7 @@ lcboApp.displayAlc = function(item){
     })
 }
 
-lcboApp.getStoresById = function(clickedItem){
+lcboApp.getStoresById = function(clickedItem, lat, long){
         console.log(clickedItem);
          $.ajax({
             url: "http://lcboapi.com/stores",
@@ -103,7 +116,9 @@ lcboApp.getStoresById = function(clickedItem){
                 access_key: lcboApp.key,
                 product_id: clickedItem,
                 per_page: 100, 
-                page: 1
+                page: 1,
+                lat: lat,
+                lon: long
             }
          }).then(function(res2){
             let storeResults = res2.result;
@@ -114,13 +129,15 @@ lcboApp.getStoresById = function(clickedItem){
 //grabbing data (product id) and sending it to the stores endpont AJAX call 
 lcboApp.events = function() {
     $('.masterContainer').on('click', 'input', function(){
+
         var clickedItem = $(this).val();
-        lcboApp.getStoresById(clickedItem)
+        lcboApp.getStoresById(clickedItem, lcboApp.usrLat, lcboApp.usrLng);
     })
 }
 
 
 lcboApp.init = function(){
+    lcboApp.getUserLocation();
     lcboApp.getAlc();
     lcboApp.getUserInput();
     lcboApp.getStoresById();
