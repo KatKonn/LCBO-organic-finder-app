@@ -1,7 +1,30 @@
 @import "setup";
 
-h1 {
-	color: green;
+// body *{
+// 	border: 1px solid red;
+// }
+.masterContainer{
+	width:90vw;
+	margin: auto;
+
+.alcContainer {
+	float: left;
+	width:calc(25% - 60px);
+	height:500px;
+	margin:30px;
+	input {
+		display:none;
+	}
+	img {
+		margin: auto;
+		display:block;
+	}
+	h1 {
+		color: green;
+		font-size:20px;
+		text-align: center;
+	}
+}
 }
 
 #map {
