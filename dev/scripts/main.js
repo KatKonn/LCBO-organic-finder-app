@@ -226,7 +226,8 @@ lcboApp.initMap = function(posGeo){
         icon:'../../assets/userMarker.svg',
     });
 
-    lcboApp.directionsDisplay = new google.maps.DirectionsRenderer;
+    lcboApp.directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers : true
+});
     lcboApp.directionsService = new google.maps.DirectionsService;
     lcboApp.directionsDisplay.setMap(lcboApp.map);
     lcboApp.directionsDisplay.setPanel(document.getElementById('right-panel'));

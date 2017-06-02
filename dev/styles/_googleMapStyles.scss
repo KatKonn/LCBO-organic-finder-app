@@ -1,0 +1,29 @@
+#map {
+	width: 60%;
+	height: 700px; 
+	float: left;
+}
+
+#right-panel {
+	width: 38%;
+	float: left;
+	margin: 1%;
+}
+
+.adp-text {
+	font-family: "Roboto", sans-serif;
+}
+
+tr, td, .adp, .adp-placemark, .adp-summary {
+	background-color: #fff;
+	border: 1px solid white;
+}
+
+.adp-directions {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+tbody tr {
+	margin: bottom: 20px;
+}
