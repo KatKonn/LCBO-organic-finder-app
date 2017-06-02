@@ -1,4 +1,5 @@
 
+
 // 1. User selects beer or wine
 // 2. On click, arrow button shows for smooth scroll
 // 3. Make ajax call to the LCBO API with query of organic and user's choice
@@ -33,16 +34,7 @@
 // get products based on userChoice beer/wine/spirits
 var lcboApp = {};
 
-
-lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF"
-
-lcboApp.getUserLocation = function() {
-
-
 lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF";
-
-
-lcboApp.getUserLocation = function() {
 
 
 
@@ -68,7 +60,6 @@ lcboApp.geoLocation = function(){
     // lcboApp.posGeo = {lat: 43.701, lng: -79.416};
     // lcboApp.initMap(lcboApp.posGeo);
 
-
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(position) {
             
@@ -76,26 +67,14 @@ lcboApp.geoLocation = function(){
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             }
-
-
-        });
-    }
-}
-
-
-            console.log(pos);
-            lcboApp.usrLat = pos.lat;
-            lcboApp.usrLng = pos.lng;
-
             lcboApp.initMap(lcboApp.posGeo);
             lcboApp.map.setCenter(lcboApp.posGeo);
             console.log(lcboApp.posGeo);
             lcboApp.usrLat = lcboApp.posGeo.lat;
             lcboApp.usrLng = lcboApp.posGeo.lng;
-
-        };
+        });
     }
-
+}
 
 
 
@@ -150,7 +129,7 @@ lcboApp.displayAlc = function(item){
         var alcContainer = $('<div>').addClass('alcContainer').append(input, label)
         //adding data identifier to the container so that the program identifies what we selected
         //.data('alcid', someObj.id);
-        $('.masterContainer').append(alcContainer);
+        $('.masterContainer').addClass('clearfix').append(alcContainer);
     })
 }
 
