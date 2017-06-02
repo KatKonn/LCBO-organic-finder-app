@@ -10,24 +10,32 @@ h1 {
 	width:90vw;
 	margin: auto;
 
-	.alcContainer {
-		float: left;
-		width:calc(25% - 60px);
-		height:500px;
-		margin:30px;
-		input {
-			display:none;
-		}
-		img {
-			margin: auto;
-			display:block;
-		}
-		h1 {
-			color: green;
-			font-size:20px;
-			text-align: center;
-		}
+
+.alcContainer {
+	margin: auto;
+	float: left;
+	width:calc(25% - 60px);
+	height:500px;
+	margin:30px;
+	position: relative;
+	input {
+		display:none;
 	}
+	img {
+		margin: auto;
+		display:block;
+	}
+	h1 {
+		color: green;
+		font-size:20px;
+		text-align: center;
+	}
+	p {
+		right:42%;
+		position: absolute;
+		bottom:5px;
+	}
+}
 }
 
 
