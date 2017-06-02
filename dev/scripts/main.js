@@ -111,7 +111,7 @@ lcboApp.getAlc = function(userChoiceBooze) {
 lcboApp.displayAlc = function(item){
     $('.masterContainer').empty();
     var filteredAlc = item.filter(function(alc){
-        return alc.image_thumb_url !== null && alc.tags !== "sake" && alc.id !== 84210
+        return alc.image_thumb_url !== null && alc.tags !== "sake" && alc.id !== 84210 && alc.inventory_count > 0;
     });
 
     //printing filtered results to the browser
@@ -180,8 +180,6 @@ lcboApp.filteredStore = function(store) {
 
 
 lcboApp.getGoogleDirections = function (storePins){
-
-
     lcboApp.directionsService.route({
         origin: lcboApp.posGeo,
         destination: storePins,
@@ -194,16 +192,15 @@ lcboApp.getGoogleDirections = function (storePins){
             window.alert('Directions request failed due to ' + status);
         }
     });
-}
+};
 
 //grabbing data (product id) and sending it to the stores endpont AJAX call 
 lcboApp.events = function() {
     $('.masterContainer').on('click', 'input', function(){
-
         var clickedItem = $(this).val();
         lcboApp.getStoresById(clickedItem, lcboApp.usrLat, lcboApp.usrLng);
-    })
-}
+    });
+};
 
 
 lcboApp.init = function(){
