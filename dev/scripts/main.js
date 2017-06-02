@@ -96,6 +96,20 @@ lcboApp.getAlc = function(userChoiceBooze) {
     })
     };
 
+    lcboApp.getUserLocation = function() {
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+            console.log(pos);
+            return pos;
+        });
+    }
+}
+
 //getting user input and sending it to the ajax call above
  lcboApp.getUserInput = function(){  
     $('.boozeChoiceButton').on('click', function(){
@@ -104,9 +118,6 @@ lcboApp.getAlc = function(userChoiceBooze) {
         lcboApp.getAlc(userChoiceBooze);
     })
 }
-
-
-
 
 //filtering undesirables out of the results
 lcboApp.displayAlc = function(item){
@@ -203,6 +214,13 @@ lcboApp.events = function() {
     });
 };
 
+    lcboApp.init = function(){
+        lcboApp.getAlc();
+        lcboApp.getUserInput();
+        lcboApp.getStoresById();
+        lcboApp.events();
+    }
+
 
 lcboApp.init = function(){
     lcboApp.getUserInput();
@@ -210,6 +228,9 @@ lcboApp.init = function(){
     lcboApp.geoLocation();
 }
 
-$(function(){
-    lcboApp.init();
-})
+
+
+    $(function(){
+        lcboApp.init();
+    })
+
