@@ -93,9 +93,9 @@ lcboApp.geoLocation = function(){
             lcboApp.usrLat = lcboApp.posGeo.lat;
             lcboApp.usrLng = lcboApp.posGeo.lng;
 
-        });
+        };
     }
-}
+
 
 
 
