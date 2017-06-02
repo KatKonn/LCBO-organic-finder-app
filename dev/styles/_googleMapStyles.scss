@@ -1,17 +1,19 @@
 #map {
-	width: 60%;
+	width: 70%;
 	height: 700px; 
 	float: left;
 }
 
-#right-panel {
-	width: 38%;
+
+.adp {
+	font-family: "Roboto", sans-serif;
+
+}
+#googleDirection {
+	width: 28%;
 	float: left;
 	margin: 1%;
-}
-
-.adp-text {
-	font-family: "Roboto", sans-serif;
+	padding: 10px;
 }
 
 tr, td, .adp, .adp-placemark, .adp-summary {
@@ -25,5 +27,5 @@ tr, td, .adp, .adp-placemark, .adp-summary {
 }
 
 tbody tr {
-	margin: bottom: 20px;
+	margin-bottom: 20px;
 }

@@ -2,16 +2,34 @@
 @import "googleMapStyles";
 
 
-
-
-h1, h2 {
-	text-transform: uppercase;
-	font-family: 'Oswald', sans-serif;
-}
-
 h1 {
 	color:  #f6ab3d;
 }
+
+.masterContainer {
+	width:90vw;
+	margin: auto;
+
+	.alcContainer {
+		float: left;
+		width:calc(25% - 60px);
+		height:500px;
+		margin:30px;
+		input {
+			display:none;
+		}
+		img {
+			margin: auto;
+			display:block;
+		}
+		h1 {
+			color: green;
+			font-size:20px;
+			text-align: center;
+		}
+	}
+}
+
 
 h2 {
 	color: #262626;
@@ -33,5 +51,6 @@ header {
 		height: 50px;
 	}
 }
+
 
 

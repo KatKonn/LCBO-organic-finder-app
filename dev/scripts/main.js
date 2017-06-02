@@ -1,4 +1,5 @@
 
+
 // 1. User selects beer or wine
 // 2. On click, arrow button shows for smooth scroll
 // 3. Make ajax call to the LCBO API with query of organic and user's choice
@@ -226,8 +227,7 @@ lcboApp.initMap = function(posGeo){
         icon:'../../assets/userMarker.svg',
     });
 
-    lcboApp.directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers : true
-});
+    lcboApp.directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers : true});
     lcboApp.directionsService = new google.maps.DirectionsService;
     lcboApp.directionsDisplay.setMap(lcboApp.map);
     lcboApp.directionsDisplay.setPanel(document.getElementById('right-panel'));
@@ -270,30 +270,17 @@ lcboApp.getAlc = function(userChoiceBooze) {
         let testResults = res.result;
         // console.log(testResults)
         lcboApp.displayAlc(testResults);
+        console.log(testResults);
     })
-    };
-
-    lcboApp.getUserLocation = function() {
-
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            }
-            console.log(pos);
-            return pos;
-        });
-    }
-}
+};
 
 //getting user input and sending it to the ajax call above
- lcboApp.getUserInput = function(){  
+lcboApp.getUserInput = function(){  
     $('.boozeChoiceButton').on('click', function(){
         var userChoiceBooze = $('input[name=alcohol]:checked').val();
         // console.log(userChoiceBooze);
         lcboApp.getAlc(userChoiceBooze);
-    })
+    });
 }
 
 //filtering undesirables out of the results
@@ -313,11 +300,12 @@ lcboApp.displayAlc = function(item){
             name: 'options',
             value: someObj.id
         })
+        var price = $('<p>').text('$' + (someObj.price_in_cents/100))
         var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
-        var alcContainer = $('<div>').addClass('alcContainer').append(input, label)
+        var alcContainer = $('<div>').addClass('alcContainer').append(input, label, price)
         //adding data identifier to the container so that the program identifies what we selected
         //.data('alcid', someObj.id);
-        $('.masterContainer').append(alcContainer);
+        $('.masterContainer').addClass('clearfix').append(alcContainer);
     })
 }
 
@@ -370,14 +358,17 @@ lcboApp.filteredStore = function(store) {
 
 
 lcboApp.getGoogleDirections = function (storePins){
+
+    $("#right-panel").empty();
+
     lcboApp.directionsService.route({
         origin: lcboApp.posGeo,
         destination: storePins,
         travelMode: 'DRIVING'
     }, function(response, status) {
         if (status === 'OK') {
-            lcboApp.directionsDisplay.setDirections(response);
             console.log(response);
+            lcboApp.directionsDisplay.setDirections(response);
         } else {
             window.alert('Directions request failed due to ' + status);
         }
@@ -392,12 +383,13 @@ lcboApp.events = function() {
     });
 };
 
-    lcboApp.init = function(){
-        lcboApp.getAlc();
-        lcboApp.getUserInput();
-        lcboApp.getStoresById();
-        lcboApp.events();
-    }
+lcboApp.init = function(){
+    lcboApp.getAlc();
+    lcboApp.getUserInput();
+    lcboApp.getStoresById();
+    lcboApp.events();
+}
+
 
 
 lcboApp.init = function(){
@@ -408,7 +400,7 @@ lcboApp.init = function(){
 
 
 
-    $(function(){
-        lcboApp.init();
-    })
+$(function(){
+    lcboApp.init();
+})
 
