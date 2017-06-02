@@ -33,7 +33,49 @@
 // get products based on userChoice beer/wine/spirits
 var lcboApp = {};
 
-lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF"
+lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF";
+
+
+
+lcboApp.initMap = function(posGeo){
+
+    lcboApp.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 14,
+      center: posGeo,
+    });
+
+    var userPin = new google.maps.Marker({
+        position: posGeo,
+        map: lcboApp.map
+    });
+
+    lcboApp.directionsDisplay = new google.maps.DirectionsRenderer;
+    lcboApp.directionsService = new google.maps.DirectionsService;
+    lcboApp.directionsDisplay.setMap(lcboApp.map);
+    lcboApp.directionsDisplay.setPanel(document.getElementById('right-panel'));
+}
+
+lcboApp.geoLocation = function(){
+    // lcboApp.posGeo = {lat: 43.701, lng: -79.416};
+    // lcboApp.initMap(lcboApp.posGeo);
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            
+            lcboApp.posGeo = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+            lcboApp.initMap(lcboApp.posGeo);
+            lcboApp.map.setCenter(lcboApp.posGeo);
+            console.log(lcboApp.posGeo);
+            lcboApp.usrLat = lcboApp.posGeo.lat;
+            lcboApp.usrLng = lcboApp.posGeo.lng;
+        });
+    }
+}
+
+
 
 lcboApp.getAlc = function(userChoiceBooze) {
      $.ajax({
@@ -80,7 +122,7 @@ lcboApp.getAlc = function(userChoiceBooze) {
 lcboApp.displayAlc = function(item){
     $('.masterContainer').empty();
     var filteredAlc = item.filter(function(alc){
-        return alc.image_thumb_url !== null && alc.tags !== "sake" && alc.id !== 84210
+        return alc.image_thumb_url !== null && alc.tags !== "sake" && alc.id !== 84210 && alc.inventory_count > 0;
     });
 
     //printing filtered results to the browser
@@ -101,8 +143,9 @@ lcboApp.displayAlc = function(item){
     })
 }
 
-lcboApp.getStoresById = function(clickedItem){
+lcboApp.getStoresById = function(clickedItem, lat, long){
         console.log(clickedItem);
+        // let storeResults = [];
          $.ajax({
             url: "http://lcboapi.com/stores",
             method: "GET",
@@ -111,21 +154,64 @@ lcboApp.getStoresById = function(clickedItem){
                 access_key: lcboApp.key,
                 product_id: clickedItem,
                 per_page: 100, 
-                page: 1
+                page: 1,
+                lat: lat,
+                lon: long
             }
          }).then(function(res2){
             let storeResults = res2.result;
             console.log(storeResults)
+            lcboApp.filteredStore(storeResults);
          })
 }
+
+lcboApp.filteredStore = function(store) {
+    // console.log(lcboApp.map.clear);
+    // map.removeOverlay(marker);
+    lcboApp.initMap(lcboApp.posGeo);
+    store.forEach(function(someObj) {
+        var pos = {
+            lat: someObj.latitude,
+            lng: someObj.longitude
+        }
+        var lcboStore = new google.maps.Marker({
+            position: pos,
+            map: lcboApp.map
+        });
+
+        lcboStore.addListener('click', function() {
+            lcboApp.map.setZoom(17);
+            lcboApp.map.setCenter(lcboStore.getPosition());
+            var userClickedPos = lcboStore.position;
+            console.log (userClickedPos);
+            lcboApp.getGoogleDirections(userClickedPos);
+        });
+    });
+}
+
+
+lcboApp.getGoogleDirections = function (storePins){
+    lcboApp.directionsService.route({
+        origin: lcboApp.posGeo,
+        destination: storePins,
+        travelMode: 'DRIVING'
+    }, function(response, status) {
+        if (status === 'OK') {
+            lcboApp.directionsDisplay.setDirections(response);
+            console.log(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+};
 
 //grabbing data (product id) and sending it to the stores endpont AJAX call 
 lcboApp.events = function() {
     $('.masterContainer').on('click', 'input', function(){
         var clickedItem = $(this).val();
-        lcboApp.getStoresById(clickedItem)
-    })
-}
+        lcboApp.getStoresById(clickedItem, lcboApp.usrLat, lcboApp.usrLng);
+    });
+};
 
     lcboApp.init = function(){
         lcboApp.getAlc();
@@ -133,6 +219,13 @@ lcboApp.events = function() {
         lcboApp.getStoresById();
         lcboApp.events();
     }
+
+
+lcboApp.init = function(){
+    lcboApp.getUserInput();
+    lcboApp.events();
+    lcboApp.geoLocation();
+}
 
 
 
