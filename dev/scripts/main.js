@@ -41,6 +41,10 @@ lcboApp.browserStuff = function(){
            $(this).siblings().removeClass('checked11');
              $(this).addClass('checked11');
        });
+
+   $('.boozeChoiceButton').on('click', function(){
+        $('.hiddenByDefault').removeClass('hiddenByDefault');
+   })
 }
 
 
@@ -50,6 +54,8 @@ lcboApp.initMap = function(posGeo){
     lcboApp.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 14,
       center: posGeo,
+      mapTypeControl: false,
+      streetViewControl: false,
       styles: [
             {
                 "featureType": "water",
