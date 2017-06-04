@@ -2,9 +2,12 @@
 @import "googleMapStyles";
 
 
-// body *{
-// 	border: 1px solid red;
-// }
+
+.wrapper {
+	width: 1170px;
+	margin: 0 auto;
+	max-width: 100%;
+}
 
 section.hiddenByDefault{
 	display:none;
@@ -14,21 +17,22 @@ section.hiddenByDefault{
 .alcContainer:hover {
 	border: solid 3px #e85727;
 }
+
 .alcContainer:active {
 	border: solid 3px black;
 }
-// .masterContainer input:checked .alcContainer {
-// 	border: solid 3px black;
-// } 
+
 .alcContainer label {
 	display: block;
 	height:100%;
 	width:100%;
 	padding:20px;
 }
+
 .button {
 	text-align: center;
 }
+
 .find {
   text-align: center;
   width: 251px;
@@ -42,16 +46,19 @@ section.hiddenByDefault{
   font-family: Oswald;
   font-size:28px;
 }
+
 .checked11 {
 	border: solid 3px black;
 
 }
+
 .heading {
 	font-family: Oswald;
 	font-size:30px;
 	text-align: center;
 	text-transform: uppercase;
 }
+
 .masterContainer{
 	width:90vw;
 	margin: 0 auto;
@@ -59,18 +66,18 @@ section.hiddenByDefault{
 
 }
 
-.masterContainer {
-	
-	margin: auto;
-
-
 
 .alcContainer {
+
+	margin: auto;
+	width:calc(25% - 60px);
+
 	font-family: Oswald;
 	vertical-align: middle;
 	display: inline-block;
 	width:calc(300px - 60px);
 	height:400px;
+
 	margin:30px;
 	position: relative;
 	input {
@@ -92,7 +99,7 @@ section.hiddenByDefault{
 		bottom:7px;
 	}
 }
-}
+
 
 
 h2 {
@@ -105,16 +112,157 @@ header {
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
+	text-align: center;
 }
 
 .header-container {
 	background-color: white;
 	display: inline-block;
+	padding: 25px;
+	margin-top: 180px;
+	padding-left: 35px;
+	padding-right: 35px;
 	img {
-		width: 150px;
-		height: 50px;
+		width: 250px;
+		height: 115px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		text-transform: uppercase;
+		color:  #f6ab3d;
+		font-family: 'Oswald', sans-serif;
+		font-size: 95px;
+		font-weight: 500px;
+		margin: 0px;
+		letter-spacing: 0.4rem;
+		&:after {
+			content: '';
+			border-bottom: 2px solid black;
+			width: 290px;
+			display: block;
+			margin: 0 auto;
+			margin-top: 8px;
+		}	&:before {
+				content: '';
+				border-bottom: 2px solid black;
+				width: 290px;
+				display: block;
+				margin: 0 auto;
+			}
+
+	}
+
+}
+	
+	h2 {
+		font-family: roboto;
+		color: #262626;
+		font-size: 20px;
+		font-weight: 500;
+	}
+
+
+.circle {
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	background-color: #262626;
+	margin: 0 auto;
+	margin-top: 100px; 
+}
+
+.chooseContainer {
+	background-color: #262626;
+	overflow: auto;
+	text-align: center;
+	h2 {
+		color: #ffffff;
+		font-family:'Oswald', sans-serif;
+		font-size: 36px;
+		text-align: center;
+		text-transform: uppercase;
+		letter-spacing: 0.2rem; 
+	}
+	button {
+		background-color: #ffffff;
+		font-family:'Oswald', sans-serif;
+		color: #E85727;
+		font-size: 28px;
+		text-transform: uppercase;
+		font-weight: 500;
+		border: none;
+		margin-top: 5px;
+		margin-bottom: 30px;
+		padding: 10px;
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 }
+
+
+
+.options {
+	display: inline-block;
+	text-align: center;
+	padding: 20px;
+	margin: 0 auto;
+	label {
+		clear: both;
+		font-size: 20px;
+		display: block;
+		color: #ffffff;
+		font-family:'Oswald', sans-serif;
+		text-transform: uppercase;
+		font-size: 28px;
+		letter-spacing: 0.2rem;
+		padding: 12px;
+	}
+	.image-container:hover {
+		background-color: #E85727;
+	}
+}
+
+input:checked + label .image-container {
+	background-color: #E85727;
+}
+
+.image-container {
+	width: 220px;
+	height: 220px;
+	border: 2px solid white;
+	border-radius: 50%;
+	img {
+		width: 50%;
+		height: 50%;
+		transform: translateY(45%);
+		}
+
+	}
+
+input#beer {
+	display: none;
+}
+
+input#wine {
+	display: none;
+}
+
+input#spirits {
+	display: none;
+}
+
+
+@media(max-width: 860px) {
+	.firstInput {
+		width: 66%;
+		margin: 0 auto;
+	}
+}
+
+
+
+
 
 
 
