@@ -47,14 +47,14 @@
 	text-transform: uppercase;
 }
 .masterContainer{
-	width:1200px;
+	width:90vw;
 	margin: 0 auto;
 	text-align: center;
 
 }
 
 .masterContainer {
-	width:90vw;
+	
 	margin: auto;
 
 
@@ -64,7 +64,7 @@
 	vertical-align: middle;
 	display: inline-block;
 	width:calc(300px - 60px);
-	height:500px;
+	height:400px;
 	margin:30px;
 	position: relative;
 	input {
@@ -83,7 +83,7 @@
 		font-size:18px;
 		right:42%;
 		position: absolute;
-		bottom:15px;
+		bottom:7px;
 	}
 }
 }

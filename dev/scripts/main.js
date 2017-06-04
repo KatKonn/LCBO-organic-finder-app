@@ -342,6 +342,7 @@ lcboApp.filteredStore = function(store) {
     // console.log(lcboApp.map.clear);
     // map.removeOverlay(marker);
     lcboApp.initMap(lcboApp.posGeo);
+    // maybe add button click listener here?
     store.forEach(function(someObj) {
         var pos = {
             lat: someObj.latitude,
