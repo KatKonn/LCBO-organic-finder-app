@@ -36,6 +36,13 @@ var lcboApp = {};
 
 lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF";
 
+lcboApp.browserStuff = function(){
+   $('.masterContainer').on('click', '.alcContainer', function() {
+           $(this).siblings().removeClass('checked11');
+             $(this).addClass('checked11');
+       });
+}
+
 
 
 lcboApp.initMap = function(posGeo){
@@ -314,7 +321,7 @@ lcboApp.displayAlc = function(item){
             name: 'options',
             value: someObj.id
         })
-        var price = $('<p>').text('$' + (someObj.price_in_cents/100))
+        var price = $('<p>').text('$' + (someObj.price_in_cents/100).toFixed(2));
         var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
         var alcContainer = $('<div>').addClass('alcContainer').append(input, label, price)
         //adding data identifier to the container so that the program identifies what we selected
@@ -407,6 +414,7 @@ lcboApp.init = function(){
     lcboApp.getUserInput();
     lcboApp.events();
     lcboApp.geoLocation();
+    lcboApp.browserStuff();
 }
 
 

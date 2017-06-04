@@ -3,13 +3,50 @@
 // body *{
 // 	border: 1px solid red;
 // }
+.alcContainer:hover {
+	border: solid 3px #e85727;
+}
+.alcContainer:active {
+	border: solid 3px black;
+}
+// .masterContainer input:checked .alcContainer {
+// 	border: solid 3px black;
+// } 
+.button {
+	text-align: center;
+}
+.find {
+  text-align: center;
+  width: 251px;
+  height: 52.9px;
+  background-color: #e85727;
+  text-transform: uppercase;
+  margin-top:50px;
+  margin-bottom:50px;
+  border: 1px solid transparent;
+  color: white;
+  font-family: Oswald;
+  font-size:28px;
+}
+.checked11 {
+	border: solid 3px black;
+
+}
+.heading {
+	font-family: Oswald;
+	font-size:30px;
+	text-align: center;
+	text-transform: uppercase;
+}
 .masterContainer{
 	width:90vw;
-	margin: auto;
-
+	margin: 0 auto;
+	text-align: center;
 .alcContainer {
-	margin: auto;
-	float: left;
+	font-family: Oswald;
+	vertical-align: middle;
+	padding:20px;
+	display: inline-block;
 	width:calc(25% - 60px);
 	height:500px;
 	margin:30px;
@@ -20,13 +57,14 @@
 	img {
 		margin: auto;
 		display:block;
+		width:100%;
 	}
 	h1 {
-		color: green;
-		font-size:20px;
+		font-size:16px;
 		text-align: center;
 	}
 	p {
+		font-size:18px;
 		right:42%;
 		position: absolute;
 		bottom:5px;
