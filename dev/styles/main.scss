@@ -2,6 +2,7 @@
 @import "googleMapStyles";
 
 
+
 .wrapper {
 	width: 1170px;
 	margin: 0 auto;
@@ -10,17 +11,75 @@
 
 h1 {
 	color:  #f6ab3d;
+
+// body *{
+// 	border: 1px solid red;
+// }
+.alcContainer:hover {
+	border: solid 3px #e85727;
+}
+.alcContainer:active {
+	border: solid 3px black;
+}
+// .masterContainer input:checked .alcContainer {
+// 	border: solid 3px black;
+// } 
+.alcContainer label {
+	display: block;
+	height:100%;
+	width:100%;
+	padding:20px;
+}
+.button {
+	text-align: center;
+}
+.find {
+  text-align: center;
+  width: 251px;
+  height: 52.9px;
+  background-color: #e85727;
+  text-transform: uppercase;
+  margin-top:50px;
+  margin-bottom:50px;
+  border: 1px solid transparent;
+  color: white;
+  font-family: Oswald;
+  font-size:28px;
+}
+.checked11 {
+	border: solid 3px black;
+
+}
+.heading {
+	font-family: Oswald;
+	font-size:30px;
+	text-align: center;
+	text-transform: uppercase;
+}
+.masterContainer{
+	width:90vw;
+	margin: 0 auto;
+	text-align: center;
+
 }
 
 .masterContainer {
-	width:90vw;
+	
 	margin: auto;
+
 
 
 .alcContainer {
+
 	margin: auto;
 	width:calc(25% - 60px);
-	height:500px;
+
+	font-family: Oswald;
+	vertical-align: middle;
+	display: inline-block;
+	width:calc(300px - 60px);
+	height:400px;
+
 	margin:30px;
 	position: relative;
 	input {
@@ -29,16 +88,17 @@ h1 {
 	img {
 		margin: auto;
 		display:block;
+		width:100%;
 	}
 	h1 {
-		color: green;
-		font-size:20px;
+		font-size:16px;
 		text-align: center;
 	}
 	p {
+		font-size:18px;
 		right:42%;
 		position: absolute;
-		bottom:5px;
+		bottom:7px;
 	}
 }
 }

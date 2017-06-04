@@ -36,6 +36,13 @@ var lcboApp = {};
 
 lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF";
 
+lcboApp.browserStuff = function(){
+   $('.masterContainer').on('click', '.alcContainer', function() {
+           $(this).siblings().removeClass('checked11');
+             $(this).addClass('checked11');
+       });
+}
+
 
 
 lcboApp.initMap = function(posGeo){
@@ -300,9 +307,9 @@ lcboApp.displayAlc = function(item){
             name: 'options',
             value: someObj.id
         })
-        var price = $('<p>').text('$' + (someObj.price_in_cents/100))
-        var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
-        var alcContainer = $('<div>').addClass('alcContainer').append(input, label, price)
+        var price = $('<p>').text('$' + (someObj.price_in_cents/100).toFixed(2));
+        var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg, price);
+        var alcContainer = $('<div>').addClass('alcContainer').append(input, label)
         //adding data identifier to the container so that the program identifies what we selected
         //.data('alcid', someObj.id);
         $('.masterContainer').addClass('clearfix').append(alcContainer);
@@ -335,6 +342,7 @@ lcboApp.filteredStore = function(store) {
     // console.log(lcboApp.map.clear);
     // map.removeOverlay(marker);
     lcboApp.initMap(lcboApp.posGeo);
+    // maybe add button click listener here?
     store.forEach(function(someObj) {
         var pos = {
             lat: someObj.latitude,
@@ -396,6 +404,7 @@ lcboApp.init = function(){
     lcboApp.getUserInput();
     lcboApp.events();
     lcboApp.geoLocation();
+    lcboApp.browserStuff();
 }
 
 
