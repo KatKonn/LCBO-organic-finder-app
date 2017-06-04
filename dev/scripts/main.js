@@ -308,8 +308,8 @@ lcboApp.displayAlc = function(item){
             value: someObj.id
         })
         var price = $('<p>').text('$' + (someObj.price_in_cents/100).toFixed(2));
-        var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
-        var alcContainer = $('<div>').addClass('alcContainer').append(input, label, price)
+        var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg, price);
+        var alcContainer = $('<div>').addClass('alcContainer').append(input, label)
         //adding data identifier to the container so that the program identifies what we selected
         //.data('alcid', someObj.id);
         $('.masterContainer').addClass('clearfix').append(alcContainer);

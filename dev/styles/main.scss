@@ -14,6 +14,12 @@
 // .masterContainer input:checked .alcContainer {
 // 	border: solid 3px black;
 // } 
+.alcContainer label {
+	display: block;
+	height:100%;
+	width:100%;
+	padding:20px;
+}
 .button {
 	text-align: center;
 }
@@ -41,13 +47,10 @@
 	text-transform: uppercase;
 }
 .masterContainer{
-	width:90vw;
+	width:1200px;
 	margin: 0 auto;
 	text-align: center;
 
-
-h1 {
-	color:  #f6ab3d;
 }
 
 .masterContainer {
@@ -59,9 +62,8 @@ h1 {
 .alcContainer {
 	font-family: Oswald;
 	vertical-align: middle;
-	padding:20px;
 	display: inline-block;
-	width:calc(25% - 60px);
+	width:calc(300px - 60px);
 	height:500px;
 	margin:30px;
 	position: relative;
@@ -81,7 +83,7 @@ h1 {
 		font-size:18px;
 		right:42%;
 		position: absolute;
-		bottom:5px;
+		bottom:15px;
 	}
 }
 }
