@@ -57,42 +57,30 @@
 		   	</div> <!-- Closes wrapper -->
 		</section> <!-- closes choosingContainer -->
 	</main>
-		   <form action="" class="masterContainer"></form> <!-- What is this for? -->
-
-	<div class="firstInput">
-		<div class="options">
-	       <input type="radio" id="beer" name="alcohol" value="beer">
-	       <label for="beer">Beer</label>
-	    </div>
-
-	    <div class="options">
-	       <input type="radio" id="wine" name="alcohol" value="wine">
-	       <label for="wine">Wine</label>
-	    </div>
-
-	    <div class="options">
-	       <input type="radio" id="spirits" name="alcohol" value="spirits">
-	       <label for="spirits">Spirits</label>
-	    </div>
-	</div>
-  
-	<div class="heading">
-		<h1>Select a drink to find in-store</h1>
-	</div>
-	   <form action="" class="masterContainer"></form>
-	<div class="button">
-	   <button class="find">View Stores</button>
-	</div>
-   
+		
 
 
-   <div id="map"></div>
-
-   <div id="googleDirection">
-		<h2>Click on a store to get directions</h2>
-		<div id="right-panel">
+	<section class="drinkOptions hiddenByDefault">
+		<div class="heading">
+			<h1>Select a drink to find in-store</h1>
 		</div>
-	</div>
+		   <form action="" class="masterContainer"></form>
+		<div class="button">
+		   <button class="find">View Stores</button>
+		</div>
+   </section>
+
+	<section class="mapContainer hiddenByDefault">
+		<h2  class="heading">Zoom out for more results, click on a pin to get directions</h2>
+		<div id="map">
+			<!-- Google map goes here -->
+		</div>
+
+		<div id="googleDirection">
+				<div id="right-panel">
+				</div>
+		</div>
+	</section>
 
 
    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>

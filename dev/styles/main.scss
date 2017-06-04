@@ -9,6 +9,11 @@
 	max-width: 100%;
 }
 
+section.hiddenByDefault{
+	display:none;
+}
+
+
 .alcContainer:hover {
 	border: solid 3px #e85727;
 }
