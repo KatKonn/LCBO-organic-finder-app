@@ -1,6 +1,6 @@
 #map {
 	width: 70%;
-	height: 700px; 
+	height: 100vh; 
 	float: left;
 }
 
@@ -11,10 +11,16 @@
 }
 #googleDirection {
 	width: 28%;
+	max-height: 100vh;
+	overflow: scroll;
 	float: left;
 	margin: 1%;
-	padding: 10px;
+	margin-top: 0;
+	.heading {
+		margin-top: 0;
+	}
 }
+
 
 tr, td, .adp, .adp-placemark, .adp-summary {
 	background-color: #fff;
