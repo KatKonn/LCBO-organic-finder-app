@@ -5,6 +5,7 @@
 .wrapper {
 	width: 1170px;
 	margin: 0 auto;
+	max-width: 100%;
 }
 
 h1 {
@@ -18,7 +19,6 @@ h1 {
 
 .alcContainer {
 	margin: auto;
-	float: left;
 	width:calc(25% - 60px);
 	height:500px;
 	margin:30px;
@@ -139,12 +139,13 @@ header {
 	}
 }
 
-.firstInput {
-	overflow: auto;
-	margin: 0 auto;
-	display: block;
-	text-align: center;
-}
+// .firstInput {
+// 	overflow: auto;
+// 	margin: 0 auto;
+// 	display: block;
+// 	text-align: center;
+// 	max-width: 100%;
+// }
 
 .options {
 	display: inline-block;
@@ -165,6 +166,10 @@ header {
 	.image-container:hover {
 		background-color: #E85727;
 	}
+}
+
+input:checked + label .image-container {
+	background-color: #E85727;
 }
 
 .image-container {
@@ -192,6 +197,24 @@ input#spirits {
 	display: none;
 }
 
+
+@media(max-width: 860px) {
+	.firstInput {
+		width: 66%;
+		margin: 0 auto;
+	}
+}
+
+// @media(max-width: 560px) {
+// 	.chooseContainer h2 {
+// 		font-size: 28px;
+// 	}
+
+// 	.headerContainer {
+// 		margin-top: 250px;
+// 		padding: 0;
+// 	}
+// }
 
 
 
