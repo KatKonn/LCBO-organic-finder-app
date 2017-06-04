@@ -1,4 +1,5 @@
 
+
 // 1. User selects beer or wine
 // 2. On click, arrow button shows for smooth scroll
 // 3. Make ajax call to the LCBO API with query of organic and user's choice
@@ -42,14 +43,191 @@ lcboApp.initMap = function(posGeo){
     lcboApp.map = new google.maps.Map(document.getElementById('map'), {
       zoom: 14,
       center: posGeo,
+      styles: [
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#e9e9e9"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 29
+                    },
+                    {
+                        "weight": 0.2
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 18
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    },
+                    {
+                        "lightness": 21
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#dedede"
+                    },
+                    {
+                        "lightness": 21
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "saturation": 36
+                    },
+                    {
+                        "color": "#333333"
+                    },
+                    {
+                        "lightness": 40
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    },
+                    {
+                        "lightness": 19
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#fefefe"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#fefefe"
+                    },
+                    {
+                        "lightness": 17
+                    },
+                    {
+                        "weight": 1.2
+                    }
+                ]
+    }
+]
     });
 
     var userPin = new google.maps.Marker({
         position: posGeo,
-        map: lcboApp.map
+        map: lcboApp.map,
+        icon:'../../assets/userMarker.svg',
     });
 
-    lcboApp.directionsDisplay = new google.maps.DirectionsRenderer;
+    lcboApp.directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers : true});
     lcboApp.directionsService = new google.maps.DirectionsService;
     lcboApp.directionsDisplay.setMap(lcboApp.map);
     lcboApp.directionsDisplay.setPanel(document.getElementById('right-panel'));
@@ -92,30 +270,17 @@ lcboApp.getAlc = function(userChoiceBooze) {
         let testResults = res.result;
         // console.log(testResults)
         lcboApp.displayAlc(testResults);
+        console.log(testResults);
     })
-    };
-
-    lcboApp.getUserLocation = function() {
-
-    if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            }
-            console.log(pos);
-            return pos;
-        });
-    }
-}
+};
 
 //getting user input and sending it to the ajax call above
- lcboApp.getUserInput = function(){  
+lcboApp.getUserInput = function(){  
     $('.boozeChoiceButton').on('click', function(){
         var userChoiceBooze = $('input[name=alcohol]:checked').val();
         // console.log(userChoiceBooze);
         lcboApp.getAlc(userChoiceBooze);
-    })
+    });
 }
 
 //filtering undesirables out of the results
@@ -135,11 +300,12 @@ lcboApp.displayAlc = function(item){
             name: 'options',
             value: someObj.id
         })
+        var price = $('<p>').text('$' + (someObj.price_in_cents/100))
         var label = $('<label>').attr('for', someObj.id).append(alcName,alcImg);
-        var alcContainer = $('<div>').addClass('alcContainer').append(input, label)
+        var alcContainer = $('<div>').addClass('alcContainer').append(input, label, price)
         //adding data identifier to the container so that the program identifies what we selected
         //.data('alcid', someObj.id);
-        $('.masterContainer').append(alcContainer);
+        $('.masterContainer').addClass('clearfix').append(alcContainer);
     })
 }
 
@@ -176,7 +342,8 @@ lcboApp.filteredStore = function(store) {
         }
         var lcboStore = new google.maps.Marker({
             position: pos,
-            map: lcboApp.map
+            map: lcboApp.map,
+            icon:'../../assets/LCBOMarker.svg',
         });
 
         lcboStore.addListener('click', function() {
@@ -191,14 +358,17 @@ lcboApp.filteredStore = function(store) {
 
 
 lcboApp.getGoogleDirections = function (storePins){
+
+    $("#right-panel").empty();
+
     lcboApp.directionsService.route({
         origin: lcboApp.posGeo,
         destination: storePins,
         travelMode: 'DRIVING'
     }, function(response, status) {
         if (status === 'OK') {
-            lcboApp.directionsDisplay.setDirections(response);
             console.log(response);
+            lcboApp.directionsDisplay.setDirections(response);
         } else {
             window.alert('Directions request failed due to ' + status);
         }
@@ -213,12 +383,13 @@ lcboApp.events = function() {
     });
 };
 
-    lcboApp.init = function(){
-        lcboApp.getAlc();
-        lcboApp.getUserInput();
-        lcboApp.getStoresById();
-        lcboApp.events();
-    }
+lcboApp.init = function(){
+    lcboApp.getAlc();
+    lcboApp.getUserInput();
+    lcboApp.getStoresById();
+    lcboApp.events();
+}
+
 
 
 lcboApp.init = function(){
@@ -229,7 +400,7 @@ lcboApp.init = function(){
 
 
 
-    $(function(){
-        lcboApp.init();
-    })
+$(function(){
+    lcboApp.init();
+})
 

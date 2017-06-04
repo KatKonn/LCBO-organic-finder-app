@@ -1,4 +1,6 @@
 @import "setup";
+@import "googleMapStyles";
+
 
 .wrapper {
 	width: 1170px;
@@ -6,14 +8,47 @@
 }
 
 h1 {
-	color: green;
+	color:  #f6ab3d;
 }
 
-#map {
-	width: 100%;
-	height: 500px; 
+.masterContainer {
+	width:90vw;
+	margin: auto;
+
+
+.alcContainer {
+	margin: auto;
+	float: left;
+	width:calc(25% - 60px);
+	height:500px;
+	margin:30px;
+	position: relative;
+	input {
+		display:none;
+	}
+	img {
+		margin: auto;
+		display:block;
+	}
+	h1 {
+		color: green;
+		font-size:20px;
+		text-align: center;
+	}
+	p {
+		right:42%;
+		position: absolute;
+		bottom:5px;
+	}
+}
 }
 
+
+h2 {
+	color: #262626;
+}
+
+ 
 header {
 	background-image: url(../../assets/heroImage.jpg);
 	background-size: cover;
@@ -156,6 +191,7 @@ input#wine {
 input#spirits {
 	display: none;
 }
+
 
 
 
