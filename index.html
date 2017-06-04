@@ -14,28 +14,51 @@
 			<h1>Organics</h1>
 			<h2>Find an organic beer at an LCBO store</h2>
 		</div>
+
+		<div class="circle">
+		</div>
 	</header>
-	<div class="firstInput">
-		<div class="options">
-	       <input type="radio" id="beer" name="alcohol" value="beer">
-	       <label for="beer">Beer</label>
-	    </div>
 
-	    <div class="options">
-	       <input type="radio" id="wine" name="alcohol" value="wine">
-	       <label for="wine">Wine</label>
-	    </div>
+	<main>
+		<section class="chooseContainer">
+			<div class="wrapper">
+				<h2>Choose a type of drink</h2>
 
-	    <div class="options">
-	       <input type="radio" id="spirits" name="alcohol" value="spirits">
-	       <label for="spirits">Spirits</label>
-	    </div>
-	</div>
-    <button class="boozeChoiceButton">
-       Next
-    </button>
-	   <form action="" class="masterContainer"></form>
-   </div>
+			<div class="firstInput">
+				
+				<div class="options">
+			       <input type="radio" id="beer" name="alcohol" value="beer">
+			       <div class="image-container">
+			       		<img src="assets/beer.svg" alt="">
+			       </div>
+			       <label for="beer">Beer</label>
+			    </div>
+
+			    <div class="options">
+			       <input type="radio" id="wine" name="alcohol" value="wine">
+			       <div class="image-container">
+			       		<img src="assets/wine.svg" alt="">
+			    	</div>
+			    	<label for="wine">Wine</label>
+				</div>
+
+			    <div class="options">
+			       <input type="radio" id="spirits" name="alcohol" value="spirits">
+			       <div class="image-container">
+			       	<img src="assets/Spirits.svg" alt="">
+			       </div>
+			       <label for="spirits">Spirits</label>
+			    </div>
+			</div> <!-- Closes firstInput -->
+
+		    <button class="boozeChoiceButton">
+		       Find Your Drink
+		    </button>
+
+		   	</div> <!-- Closes wrapper -->
+		</section> <!-- closes choosingContainer -->
+	</main>
+		   <form action="" class="masterContainer"></form> <!-- What is this for? -->
 
    <div id="map"></div>
    <div id="right-panel"></div>
