@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hello</title>
+	<!-- <meta name=“viewport” content=“width=device-width, initial-scale=1.0"> -->
+	<title>LCBO Organics</title>
+	<link rel="stylesheet" href="animate.css">
 	<link rel="stylesheet" href="public/styles/styles.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Oswald|Roboto" rel="stylesheet">
+
 </head>
 <body>
 
@@ -14,13 +18,15 @@
 			<h1>Organics</h1>
 			<h2>Find an organic beer at an LCBO store</h2>
 		</div>
-
-		<div class="circle">
-		</div>
+		
+		
+		<a href="#scroll1">
+			<i class="fa fa-chevron-down" aria-hidden="true"></i>
+		</a>
+		
 	</header>
 
-
-	<main>
+	<main id="scroll1">
 		<section class="chooseContainer">
 			<div class="wrapper">
 				<h2>Choose a type of drink</h2>
@@ -49,28 +55,25 @@
 			       </div>Spirits</label>
 			    </div>
 			</div> <!-- Closes firstInput -->
-
+			<a href="#scroll2">
 		    <button class="boozeChoiceButton">
 		       Find Your Drink
 		    </button>
+		    </a>
 
 		   	</div> <!-- Closes wrapper -->
 		</section> <!-- closes choosingContainer -->
 	</main>
-		
-
-
-	<section class="drinkOptions hiddenByDefault">
+	<a href="#scroll3"><button class="find hiddenByDefault">Jump to Map</button></a>	
+	
+	<section class="drinkOptions hiddenByDefault" id="scroll2">
 		<div class="heading">
 			<h1>Select a drink to find in-store</h1>
 		</div>
 		   <form action="" class="masterContainer"></form>
-		<div class="button">
-		   <button class="find">View Stores</button>
-		</div>
    </section>
 
-	<section class="mapContainer hiddenByDefault">
+	<section class="mapContainer hiddenByDefault clearfix" id="scroll3">
 		<h2  class="heading">Zoom out for more results, click on a pin to get directions</h2>
 		<div id="map">
 			<!-- Google map goes here -->
@@ -86,6 +89,7 @@
    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 	 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAburmiZkCGkfLiI72tMLJI_SCQ8kDVMEw&callback=window.lcboApp.initMap"
     type="text/javascript"></script>
+    <script src="jquery.smooth-scroll.js"></script>
 
 	<script src = "public/scripts/main.js"></script>
 </body>
