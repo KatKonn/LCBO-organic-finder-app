@@ -37,14 +37,35 @@ var lcboApp = {};
 lcboApp.key = "MDplNzZkOGVjYy00NjFiLTExZTctYjY1MC1mNzdhM2JhOTg3OGQ6YUVVRDRXaGZGVmZaT0ZYNHdNRjYwNG8ybGxuSE5mTno2dldF";
 
 lcboApp.browserStuff = function(){
+    $('a').smoothScroll({
+            offset:0,
+            speed: 1200
+        });
+    $('i').addClass('animated infinite bounce');
    $('.masterContainer').on('click', '.alcContainer', function() {
            $(this).siblings().removeClass('checked11');
              $(this).addClass('checked11');
        });
 
    $('.boozeChoiceButton').on('click', function(){
-        $('.hiddenByDefault').removeClass('hiddenByDefault');
+
+        let selectedAlcoholType = $('input[name=alcohol]:checked').val();
+        
+        if (selectedAlcoholType !== undefined){
+            $('.drinkOptions, .mapContainer').removeClass('hiddenByDefault');
+        }
+   });
+
+   $('.masterContainer').on('click', '.alcContainer', function(){
+        $('.find').removeClass('hiddenByDefault');
+
    })
+
+//    $(window).scroll(function(){
+//     $(".find").css("top", Math.max(0, 1500 - $(this).scrollTop()));
+// });
+    
+
 }
 
 

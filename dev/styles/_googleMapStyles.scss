@@ -2,11 +2,31 @@
 	width: 70%;
 	height: 100vh; 
 	float: left;
+    @media (max-width: $sm){
+    width: 50%;
+    }
+     @media (max-width: $xs){
+        width: 100%;
+        max-height: 400px;
+    }
 }
 
+.mapContainer {
+	background-color: white;
+	z-index: 5;
+	.heading{
+		color: #e85727;
+	}
+	@media (max-width: $xs){
+	    padding: 2rem;
+	}	
+}
 
 .adp {
 	font-family: "Roboto", sans-serif;
+	@media (max-width: $xs){
+	    margin: auto;
+	}	
 
 }
 #googleDirection {
@@ -16,9 +36,14 @@
 	float: left;
 	margin: 1%;
 	margin-top: 0;
-	.heading {
-		margin-top: 0;
-	}
+	@media (max-width: $sm){
+    width: 48%;
+    }
+    @media (max-width: $xs){
+    	min-width: 70%;
+       margin: auto;
+       float:none;
+    }
 }
 
 
